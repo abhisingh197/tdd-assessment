@@ -15,4 +15,14 @@ test("it renders with a count of 0 and increments on button click", () => {
   // Check count after click
   const updatedCountDisplay = screen.getByText(/count: 1/i);
   expect(updatedCountDisplay).toBeInTheDocument();
+
+  const resetButton = screen.getByRole("button", { name: /reset/i });
+  expect(resetButton).toBeInTheDocument();
+
+  // Click the reset button
+  fireEvent.click(resetButton);
+
+  // Verify the count resets to 0
+  const resetCountDisplay = screen.getByText(/count: 0/i);
+  expect(resetCountDisplay).toBeInTheDocument();
 });
